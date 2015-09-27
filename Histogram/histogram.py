@@ -28,7 +28,7 @@ def unique_words(gram):
 
 
 def frequency(word, histo):
-    freq = histo[word]
+    freq = histo.get(word, "Does not exist")
     return freq
 
 if __name__ == '__main__':
