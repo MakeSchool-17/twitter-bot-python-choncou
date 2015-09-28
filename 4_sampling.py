@@ -42,7 +42,7 @@ def stochastic(histo):
     for j in range(len(key_list)):
         histo[key_list[j]] = (val_list[j]/count)
 
-    cur_rand_value = (random.randint(0, 10000000) / 10000000)
+    cur_rand_value = (random.random())
     cum_sum = 0
     for k in range(len(list(histo))):
         sample_val_list = list(histo.values())
