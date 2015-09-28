@@ -1,7 +1,6 @@
 import sys
 import re
 import random
-import time
 
 
 def histogram(filename):
@@ -53,14 +52,11 @@ def stochastic(histo):
 
 
 if __name__ == '__main__':
-    start_time = time.clock()
     output = histogram(sys.argv[1])
-    printer = (stochastic(output))
+    print(stochastic(output))
 
     # size = unique_words(output)
     # print("Number of unique words: " + str(size))
     # if len(sys.argv) > 2:
     #     freq = frequency(sys.argv[2], output)
     #     print("Frequency of " + sys.argv[2] + ": " + str(freq))
-    end_time = time.clock()
-    print(end_time - start_time)
