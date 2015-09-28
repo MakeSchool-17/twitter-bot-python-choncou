@@ -1,6 +1,7 @@
 import sys
 import re
 import random
+import time
 
 
 def histogram(filename):
@@ -13,7 +14,7 @@ def histogram(filename):
     big_word_list = sub.split()
 
     dictionary = {}
-    for i in range(len(big_word_list)-1):
+    for i in range(len(big_word_list)):
         one_word = big_word_list[i]
         cur_value = dictionary.get(one_word, 0)
         if cur_value == 0:
@@ -35,24 +36,31 @@ def frequency(word, histo):
 
 def stochastic(histo):
     count = 0
-    sample = histo
     val_list = list(histo.values())
     key_list = list(histo)
     for i in range(len(key_list)):
         count += val_list[i]
-    for i in range(len(key_list)):
-        sample[key_list[i]] = (float(val_list[i])/float(count))
-    print(sum(list(sample.values())))
-    print(count)
+    for j in range(len(key_list)):
+        histo[key_list[j]] = (val_list[j]/count)
+
+    cur_rand_value = (random.randint(0, 10000000) / 10000000)
+    cum_sum = 0
+    for k in range(len(list(histo))):
+        sample_val_list = list(histo.values())
+        cum_sum += sample_val_list[k]
+        if(cum_sum >= cur_rand_value):
+            return key_list[k]
 
 
 if __name__ == '__main__':
+    start_time = time.clock()
     output = histogram(sys.argv[1])
-    rand_list = list(output)
-    print(random.choice(rand_list))
-    stochastic(output)
+    printer = (stochastic(output))
+
     # size = unique_words(output)
     # print("Number of unique words: " + str(size))
     # if len(sys.argv) > 2:
     #     freq = frequency(sys.argv[2], output)
     #     print("Frequency of " + sys.argv[2] + ": " + str(freq))
+    end_time = time.clock()
+    print(end_time - start_time)
