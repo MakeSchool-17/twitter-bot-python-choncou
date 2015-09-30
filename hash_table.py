@@ -6,21 +6,21 @@ class MyHash:
             self.table_list.append(None)
 
     def set(self, key, value):
-        hash_key = (hash(key)%self.table_size)
+        hash_key = (hash(key) % self.table_size)
         if self.table_list[hash_key] is None:
             self.table_list[hash_key] = Node(key, value)
         else:
             self.table_list[hash_key].set_collision(key, value)
 
     def get(self, key):
-        hash_key = (hash(key)%self.table_size)
+        hash_key = (hash(key) % self.table_size)
         if self.table_list[hash_key]:
             return self.table_list[hash_key].get(key)
         else:
             return "Does not exist"
 
     def update(self, key, val):
-        hash_key = (hash(key)%self.table_size)
+        hash_key = (hash(key) % self.table_size)
         if self.table_list[hash_key]:
             if self.table_list[hash_key].update(key, val):
                 return "Updated"
@@ -61,7 +61,7 @@ class Node:
         elif self.node_key == key:
             return self.node_val
         else:
-             return "Does not exist"
+            return "Does not exist"
 
     def update(self, key, val):
         if self.node_key is not key:
@@ -70,7 +70,7 @@ class Node:
             self.node_val = val
             return True
         else:
-            return False;
+            return False
 
     def keys(self, my_list):
         my_list.append(self.node_key)
