@@ -55,8 +55,8 @@ if __name__ == '__main__':
     output = histogram(sys.argv[1])
     print(stochastic(output))
 
-    # size = unique_words(output)
-    # print("Number of unique words: " + str(size))
-    # if len(sys.argv) > 2:
-    #     freq = frequency(sys.argv[2], output)
-    #     print("Frequency of " + sys.argv[2] + ": " + str(freq))
+    size = unique_words(output)
+    print("Number of unique words: " + str(size))
+    if len(sys.argv) > 2:
+        freq = frequency(sys.argv[2], output)
+        print("Frequency of " + sys.argv[2] + ": " + str(freq))
