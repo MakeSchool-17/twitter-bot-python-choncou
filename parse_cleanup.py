@@ -6,7 +6,7 @@ def cleanup(filename):
     file_source = open(filename, encoding='utf-8')
     big_word_list = file_source.read()
 
-    regex = re.compile("[^a-zA-Z']")
+    regex = re.compile("[^\w\.\"\',]")
     sub = regex.sub(' ', big_word_list)
     return sub
 
