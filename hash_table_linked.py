@@ -20,7 +20,7 @@ class MyHash:
         if self.table_list[hash_key]:
             return self.table_list[hash_key].get(key)
         else:
-            return "Does not exist"
+            return "DNE"
 
     def update(self, key, val):
         hash_key = (hash(key) % self.table_size)
@@ -83,7 +83,7 @@ class LinkedList:
                 return cur_node.node_val
             else:
                 cur_node = cur_node.node_next
-        return "Does not exist"
+        return "DNE"
 
 
 class Node:
