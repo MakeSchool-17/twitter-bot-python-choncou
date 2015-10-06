@@ -1,6 +1,6 @@
 import sys
 import re
-import hash_table_linked
+import token_hash_table
 
 
 def tokenize(filename):
@@ -18,14 +18,12 @@ if __name__ == '__main__':
     else:
         filename = input("Enter Filename: ")
         token_list = tokenize(filename)
-    print(token_list)
-    # my_hash = hash_table_linked.MyHash(5000)  # load factor still to be implemented in Hash table
-    # for i in token_list:
-    #     cur_val = my_hash.get(i)
-    #     if cur_val == "DNE":
-    #         my_hash.set(i, 1)
-    #     else:
-    #         my_hash.update(i, cur_val+1)
-    #
-    # print(my_hash.values())
-    # print(my_hash.keys())
+    my_hash = token_hash_table.MyHash(5000)  # load factor still to be implemented in Hash table
+    for i, token in enumerate(token_list):
+        # cur_val = my_hash.get(token)
+        if my_hash.get(token) == 0:
+            my_hash.set(token, 1)
+        else:
+            my_hash.update(token)
+
+    print(my_hash.values())
