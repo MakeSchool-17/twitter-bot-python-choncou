@@ -43,11 +43,13 @@ class Heap:
                 break
 
     def delete_max(self):
+        deleted = self.heap[1].node_key
         for i in range(1, self.size()):
             self.heap[i] = self.heap[i+1]
         self.heap.pop()
         for i in range(1, self.size()):
             self.shift_up(i)
+        return deleted
 
 
 class Node:

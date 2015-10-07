@@ -1,16 +1,20 @@
 class MyHash:
-    def __init__(self, size):
-        self.table_size = size
+    def __init__(self):
+        self.table_size = 1000  # Default HashTable size
         self.table_list = []
-        for i in range(size):
+        for i in range(self.table_size):
             self.table_list.append(None)
+        self.count = 0  # Keeps the count of used buckets in Table
 
     def set(self, key, value):
         hash_key = (hash(key) % self.table_size)
-        if self.table_list[hash_key] is None:
+        if self.table_list[hash_key] is None:  # Check if List exists here
             self.table_list[hash_key] = LinkedList()
             self.table_list[hash_key].head = Node(key, value)
             self.table_list[hash_key].count += 1
+            self.count += 1
+            if (self.count/self.table_size) >= 2/3:
+                self.rehash()
         else:
             cur_list = self.table_list[hash_key]
             cur_list.add(key, value)
@@ -55,12 +59,27 @@ class MyHash:
                     cur_node = cur_node.node_next
         return all_vals
 
+    def rehash(self):
+        self.table_size = self.table_size*2
+        old_list = self.table_list
+        self.table_list = []
+        for i in range(self.table_size):
+            self.table_list.append(None)
+        self.count = 0
+        for i, cur_list in enumerate(old_list):
+            if cur_list:
+                cur_node = cur_list.head
+                for i in range(cur_list.count):
+                    self.set(cur_node.node_key, cur_node.node_val)
+                    cur_node = cur_node.node_next
+        # print("Rehash complete" + str(self.table_size))
+
 
 class LinkedList:
     def __init__(self):
         self.head = None
         self.tail = None
-        self.count = 0
+        self.count = 0  # Keeps count of Nodes in LinkedList
 
     def add(self, key, val):
         if self.tail:
@@ -96,6 +115,7 @@ class Node:
         self.node_val = val
         self.node_next = None
         self.node_prev = None
+        # self.markov_chain = MyHash(100)# TODO: Remove parm in MyHash
 
 # if __name__ == '__main__':
 #     my_hash = MyHash(10)
