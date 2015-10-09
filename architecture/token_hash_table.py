@@ -115,7 +115,7 @@ class Node:
         self.node_val = val
         self.node_next = None
         self.node_prev = None
-        # self.markov_chain = MyHash(100)# TODO: Remove parm in MyHash
+        self.markov_link = None
 
 # if __name__ == '__main__':
 #     my_hash = MyHash(10)

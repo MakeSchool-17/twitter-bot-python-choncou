@@ -1,16 +1,18 @@
 import sys
-import re
+# import re
 import token_hash_table
 import heap
 import sample
+import nltk
 
 
 def tokenize(filename):
     file_source = open(filename, encoding='utf-8')
     big_word_list = file_source.read()
 
-    regex = re.compile('(\".+\"|[^\s]+)')
-    sub = re.findall(regex, big_word_list)
+    sub = nltk.word_tokenize(big_word_list)
+    # regex = re.compile('\".+\"|\w+')
+    # sub = re.findall(regex, big_word_list)
     return sub
 
 if __name__ == '__main__':
