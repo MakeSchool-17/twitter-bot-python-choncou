@@ -1,5 +1,5 @@
 import sys
-from tokenization import tokenize
+import tokenization
 import sample
 import sentence
 import random
@@ -155,10 +155,10 @@ class Node:
 if __name__ == '__main__':
     token_list = []
     if(len(sys.argv)) > 1:
-        token_list = tokenize(sys.argv[1])
+        token_list = tokenization.tokenize(sys.argv[1])
     else:
         filename = input("Enter Filename: ")
-        token_list = tokenize(filename)
+        token_list = tokenization.tokenize(filename)
 
     my_graph = Markov_Chain()
     for i, k in enumerate(token_list):
