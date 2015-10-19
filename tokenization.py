@@ -10,6 +10,16 @@ def tokenize(filename):
     file_source = open(filename, encoding='utf-8')
     big_word_list = file_source.read()
 
+    # [brian] You forgot to close the file! It'll be closed automatically when
+    # the scripy finishes, but in a larger program this could be a pretty
+    # terrible mistake! Try writing:
+
+    with open(filename, encoding='utf-8') as file_source:
+        big_word_list = file_source.read()
+
+    # and by the time the program reaches this line, the file will already
+    # be closed.
+
     sub = nltk.word_tokenize(big_word_list)
     # regex = re.compile('\".+\"|\w+')
     # sub = re.findall(regex, big_word_list)

@@ -1,3 +1,4 @@
+from collections import Counter
 import sys
 import re
 
@@ -12,6 +13,11 @@ def histogram(filename):
 
     tuple_list = []
 
+    # [brian] You could replace the below condition with:
+    # `while big_word_list:`. Python has a pretty fun
+    # definition of what qualifies as true and false.
+    # here's a link with more about the rules:
+    # https://www.udacity.com/wiki/cs258/truthiness-in-python
     while len(big_word_list) > 0:
         cur_word = big_word_list[0]
         tuple_list.append((cur_word, big_word_list.count(cur_word)))
@@ -19,6 +25,11 @@ def histogram(filename):
             big_word_list.remove(cur_word)
 
     return tuple_list
+
+    # [brian] You could replace the above while loop with:
+
+    return Counter(big_word_list).items()
+
 
 
 def frequency(word, histo):

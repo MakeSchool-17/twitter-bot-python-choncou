@@ -11,6 +11,10 @@ class Markov_Chain:
         self.table_buckets = []
         for i in range(self.table_size):
             self.table_buckets.append(None)
+
+        # [brian] You can write the above as:
+        self.table_buckets = [None] * self.table_size
+
         self.used_buckets = 0
 
     def set(self, key, did_occure):
@@ -21,6 +25,8 @@ class Markov_Chain:
             self.table_buckets[hash_position].head.node_val += 1
             self.table_buckets[hash_position].count += 1
             self.used_buckets += 1
+            # [brian] If you're using python 2, `2/3` is actually 0, you rehash every time!
+            # [brian] If you're using python 3, nevermind :)
             if (self.used_buckets/self.table_size) >= 2/3:
                 self.rehash()
         else:
@@ -139,6 +145,14 @@ class LinkedList:
                     curr_node = curr_node.node_next
                 else:
                     return None
+
+            # [brian] Instead of the above you could write:
+
+            while curr_node:
+                if curr_node.node_key == key:
+                    return curr_node
+                curr_node = curr_node.node_next
+
         return None
 
 
